@@ -3,6 +3,7 @@
 // =========================
 var express = require('express');
 var app = express();
+var expressValidator = require("express-validator");
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -23,6 +24,7 @@ mongoose.connect(db);
 require("./config/passport")(passport); //configuration for passsport
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressValidator());
 app.use(cookieParser());
 app.use(flash());
 app.use(methodOverride(function(req, res){

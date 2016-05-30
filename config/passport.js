@@ -36,7 +36,7 @@ module.exports = function(passport) {
     process.nextTick(function() {
 
       User.findOne({ "local.email": email }, function(err, user) {
-        // console.log(user);
+        console.log(user);
         if (err) {
           console.log("there is an error!");
           return done(err); //checks for an error in email

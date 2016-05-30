@@ -57,7 +57,7 @@ router.post('/login', passport.authenticate('local-login', {
 // Signup page
 // =========================
 router.get("/signup", function(req, res) {
-  console.log("get signup works");
+  console.log("get signup page route");
   res.render("./user/signup.ejs", {message: req.flash("signupMessage")} )
 });
 
@@ -82,7 +82,7 @@ router.get("/logout", function(req, res) {
   console.log("logout reached");
   req.logout();
   req.flash("success_msg", "You are logged out");
-  res.redirect("/user");
+  res.redirect("/");
 });
 
 // =========================
@@ -157,11 +157,11 @@ router.delete('/profile/:id', function(req, res) {
 
 // Checks if user is authenticated
 function isLoggedIn(req, res, next) {
-  console.log("is logged in runs");
+  console.log("isloggedin method runs");
   if (req.isAuthenticated()) {
     return next();
   } else {
-  res.redirect('/user');
+  res.redirect('/');
   }
 }
 

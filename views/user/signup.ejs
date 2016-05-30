@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/master.css">
 	<title></title>
 </head>
 <body>
 
- <% if (message.length > 0) { %>
-        <div>
-        	<%= message %>
-        </div>
-    <% } %>
+<% if (message.length > 0) { %>
+          <div class="error-alert">
+            <%= message %>
+          </div>
+<% } %>
 
  <form action="/user/signup" method="post">
  		<div>
