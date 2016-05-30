@@ -6,26 +6,26 @@ var router = express.Router();
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// FUNCTION SECTION
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// Checks if user is authenticated
-
+// =========================
+// Controller
+// =========================
+var yelpAPIController = require("./yelpAPI.js")
+router.all("/yelp/*", isLoggedIn, yelpAPIController); //protects yelp route
+// router.get("/yelp/index", isLoggedIn, yelpAPIController);
 
 // =========================
 // Index
 // =========================
 router.get("/", function(req, res) {
   // console.log("main route works");
-  res.render("index.ejs");
+  res.render("./user/index.ejs");
 })
 
 // =========================
 // Login page
 // =========================
 router.get("/login", function(req, res) {
-  res.render("login.ejs", { message: req.flash("loginmessage")})
+  res.render("./user/login.ejs", { message: req.flash("loginMessage")})
 });
 
 // =========================
@@ -43,7 +43,7 @@ router.get("/login", function(req, res) {
 // // Post login
 // // =========================
 router.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/user', // redirect to the secure profile section
+  successRedirect: '/user/profile', // redirect to the secure profile section
   failureRedirect: '/user/login', // redirect back to the signup page if there is an error
   failureFlash : true // allow flash messages
 }));
@@ -53,7 +53,7 @@ router.post('/login', passport.authenticate('local-login', {
 // =========================
 router.get("/signup", function(req, res) {
   console.log("get signup works");
-  res.render("signup.ejs", {message: req.flash("signup message")} )
+  res.render("./user/signup.ejs", {message: req.flash("signupMessage")} )
 });
 
 // =========================
@@ -74,25 +74,33 @@ router.post("/signup", passport.authenticate("local-signup", {
 // =========================
 // Main profile page
 // =========================
-router.get("/profile", function(req, res) {
+router.get("/profile", isLoggedIn, function(req, res) {
   console.log("profile reached");
-  res.render("profile.ejs", {user: req.user});
+  res.render("./user/profile.ejs", {user: req.user});
 });
 
 // =========================
 // Logout
 // =========================
 router.get("/logout", function(req, res) {
+  console.log("logout reached");
   req.logout();
   req.flash("success_msg", "You are logged out");
-  res.redirect("/");
+  res.redirect("/user");
+
+
 });
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// FUNCTION SECTION
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Checks if user is authenticated
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
-  res.redirect('/');
+  res.redirect('/user');
   }
 }
 

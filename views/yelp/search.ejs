@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<title></title>
+</head>
+<body>
+<header>
+</header>
+<!-- need to make important things for yelp query -->
+<h1>Search for some restaurants</h1>
+
+
+	<div id="searchbar">
+		<form action="/user/yelp/index" method="POST">
+			<input type="text" name="term" placeholder="Term"></br>
+			<!-- <input type="text" name="category_filter" placeholder="Category"></br> -->
+			<input type="text" name="location" placeholder="location"></br>
+			<input type="reset"></br>
+			<button class="button">Search</button>
+		</form>
+	</div>
+
+
+</body>
+</html>

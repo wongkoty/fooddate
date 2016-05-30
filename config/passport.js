@@ -19,10 +19,9 @@ module.exports = function(passport) {
     });
 });
 
-  // =========================
-  // local signup
-  // =========================
-
+// =========================
+// local signup
+// =========================
   passport.use("local-signup", new LocalStrategy({
     usernameField: "email",
     passwordField: "password",
@@ -49,7 +48,7 @@ module.exports = function(passport) {
           // console.log(newUser.generateHash(password));
           newUser.local.password = newUser.generateHash(password);
           console.log(newUser.local.password);
-          
+
           newUser.save(function(err) {
             if (err) {
               throw err;
@@ -81,11 +80,11 @@ module.exports = function(passport) {
         }
         if (!user) {
           console.log("no user exists");
-          return done(null, false, req.flash("loginMessage", "No user found"));
+          return done(null, false, req.flash("loginMessage", "Invalid email or password"));
         }
         if (!user.validPassword(password, user.local.password)) {
           console.log("wrong password");
-          return done(null, false, req.flash("loginMessage", "Wrong Password"));
+          return done(null, false, req.flash("loginMessage", "Invalid email or password"));
         }
         return done(null, user);
       });
