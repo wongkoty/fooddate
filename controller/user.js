@@ -106,23 +106,30 @@ router.get("/profile", isLoggedIn, function(req, res) {
 // =========================
 // Updates profile page
 // =========================
-router.put("/profile", isLoggedIn, function(req, res) {
+router.put("/profile/:id", isLoggedIn, function(req, res) {
   console.log("profile update reached");
   console.log(req.body);
-  console.log(req.body.email);
-  User.findOneAndUpdate( { email: req.body.email }, req.body, function(err, user) {
+  // console.log(req.body.email);
+  User.findOneAndUpdate( {_id: req.params.id }, req.body, function(err, user) {
     if (err) {
       console.log(err)
     } else {
       console.log("saved");
     }
   });
+  res.redirect("/user/profile");
 });
 
 // =========================
 // DELETE PROFILE
 // =========================
+router.delete('/profile/:id', function(req, res) {
+  // console.log("delete route works");
+  console.log('deleting ' + req.params.id);
+  User.remove({_id: req.params.id}).exec();
 
+  res.redirect("/user");
+});
 
 
 

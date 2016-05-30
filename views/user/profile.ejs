@@ -12,7 +12,7 @@ profile page</br>
 
 
 	<div id="sign-up">
-	 <form action="/user/profile" method="post">
+	 <form action="/user/profile/<%= data.id %>" method="post">
  		<div>
       <label>First Name</label>
       <input type="text" name="first_name" value="<%= data.first_name %>">
@@ -25,16 +25,8 @@ profile page</br>
 	    <label>Phone Number</label>
 	    <input type="text" name="phone_number" value="<%= data.phone_number %>">
 	  </div>
-	  <div>
-	      <label>Email</label>
-	      <input type="text" name="email">
-	  </div>
-	  <div>
-	      <label>Password</label>
-	      <input type="password" name="password">
-	  </div>
 	  <input type="hidden" name="_method" value="put">
-    <button type="submit">Signup</button>
+    <button type="submit">Update</button>
   </form>
 
   <form action="/user/profile/<%= data.id %>" method="POST">

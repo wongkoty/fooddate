@@ -15,7 +15,6 @@ module.exports = function(passport) {
   //deserialize user
   passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
-      user.local.first_name = "";
       done(err, user);
     });
 });

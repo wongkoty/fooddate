@@ -28,6 +28,8 @@ router.get("/yelp", function(req, res) {
 // =========================
 router.get("/yelp/index", function(req, res) {
   console.log("index route works");
+  console.log(req.body);
+  console.log(req.user);
   // var sess = req.session;
   // console.log(sess);
   // var data = req.cookies.body;
