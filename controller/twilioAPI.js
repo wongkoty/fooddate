@@ -20,23 +20,24 @@ router.post("/twilio", function(req, res) {
   var test = req.body;
   console.log(test);
   console.log(typeof test);
-  console.log(test.addresss);
+  // console.log(test.addresss);
   console.log(req.user);
   var sendThis = "Yo " + test.friends + ", " + req.user.first_name + " wants to invite you to " + test.restaurant_name + " at " + test.address + ", " + test.city + " on " + test.date;
   var sendThisNumber = "+1" + test.phone_number;
   console.log(sendThis);
   console.log(sendThisNumber);
   // console.log(req.body.address.display_address);
-    client.sendMessage({
+  client.sendMessage({
     to: sendThisNumber,
-    // from: "+13478629876",
+    from: "+13478629876",
     body: sendThis
   }), function(err, data){
-    if(err)
+    if(err){
       console.log(err);
+    }
     console.log(data);
-    res.redirect("/user");
   }
+  res.redirect("/user");
 });
 
 

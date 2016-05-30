@@ -5,35 +5,12 @@
 </head>
 <body>
 
-profile page</br>
+<h1>What would you like to do?</h1></br>
 
-<a href="/user/yelp/">Make a search</a>
+<a href="/user/yelp/">Make a search</a></br>
 <a href="/user/logout">Logout</a></br>
+<a href="/user/edit">Edit Profile</a>
 
-
-	<div id="sign-up">
-	 <form action="/user/profile/<%= data.id %>" method="post">
- 		<div>
-      <label>First Name</label>
-      <input type="text" name="first_name" value="<%= data.first_name %>">
-	  </div>
-	  <div>
-	  	<label>Last Name</label>
-	    <input type="text" name="last_name" value="<%= data.last_name %>">
-	  </div>
-	  <div>
-	    <label>Phone Number</label>
-	    <input type="text" name="phone_number" value="<%= data.phone_number %>">
-	  </div>
-	  <input type="hidden" name="_method" value="put">
-    <button type="submit">Update</button>
-  </form>
-
-  <form action="/user/profile/<%= data.id %>" method="POST">
-  	<input type="hidden" name="_method" value="DELETE"/>
-  	<button>Delete brah?</button>
-	</form>
-	</div>
 
 
 </body>

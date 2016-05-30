@@ -30,12 +30,17 @@ router.get("/yelp/index", function(req, res) {
   console.log("index route works");
   console.log(req.body);
   console.log(req.user);
+  console.log("=========");
+  console.log(req.session);
+  console.log("=========");
+  console.log(req.session.data);
+  var data = req.session;
   // var sess = req.session;
   // console.log(sess);
   // var data = req.cookies.body;
   // console.log(data);
   // console.log(data.term);
-  // res.render("index.ejs", {data});
+  res.render("./yelp/index.ejs", data);
 });
 
 // ==============================
@@ -67,12 +72,16 @@ router.get("/yelp/:id", function(req,res){
 router.post("/yelp/index", function(req, res) {
   console.log("yelp post route works");
   console.log(req.body);
+  // req.session.data = req.body; // trying to set session to the body to refer to in my index
   // var test = JSON.stringify(req.body);
   // res.cookie("term", req.body.term);
   yelp.search({ term: req.body.term, limit: 10, location: req.body.location })
   .then(function (data) {
-    console.log(data);
-    res.render("./yelp/index.ejs", {data});
+    console.log("yelp search rendered");
+    // console.log(data);
+    req.session.data = data; // trying to set session to the body to refer to in my index
+    // res.render("./yelp/index.ejs", {data}); //SUCCESS FINALLY TO PUT IN GET ROUTE
+    res.redirect("/user/yelp/index");
   })
   .catch(function (err) {
     console.error(err);

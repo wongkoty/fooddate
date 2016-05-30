@@ -10,9 +10,6 @@ var LocalStrategy = require("passport-local").Strategy;
 // =========================
 // Controllers
 // =========================
-
-
-
 //can now access the twilio controller if logged in
 var twilioAPIController = require("./twilioAPI.js");
 router.all("/twilio/", isLoggedIn, twilioAPIController);
@@ -23,19 +20,17 @@ router.all("/yelp/*", isLoggedIn, yelpAPIController); //protects yelp route
 // router.get("/yelp/index", isLoggedIn, yelpAPIController);
 
 
-// =========================
-// Index
-// =========================
-router.get("/", function(req, res) {
-  // console.log("main route works");
-  res.render("./user/index.ejs");
-})
 
 // =========================
 // Login page
 // =========================
 router.get("/login", function(req, res) {
-  res.render("./user/login.ejs", { message: req.flash("loginMessage")})
+  console.log(req.user)
+  if (req.user == null) {
+    res.render("./user/login.ejs", { message: req.flash("loginMessage")})
+  } else {
+    res.redirect("/user");
+  }
 });
 
 // =========================
@@ -53,7 +48,7 @@ router.get("/login", function(req, res) {
 // // Post login
 // // =========================
 router.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/user/profile', // redirect to the secure profile section
+  successRedirect: '/user/', // redirect to the secure profile section
   failureRedirect: '/user/login', // redirect back to the signup page if there is an error
   failureFlash : true // allow flash messages
 }));
@@ -93,7 +88,7 @@ router.get("/logout", function(req, res) {
 // =========================
 // Main profile page
 // =========================
-router.get("/profile", isLoggedIn, function(req, res) {
+router.get("/", isLoggedIn, function(req, res) {
   console.log("profile reached");
   console.log(req.body);
   var data = req.user;
@@ -102,6 +97,20 @@ router.get("/profile", isLoggedIn, function(req, res) {
   console.log(data.local);
   res.render("./user/profile.ejs", {data:data});
 });
+
+// =========================
+// Edit profile page
+// =========================
+router.get("/:id", isLoggedIn, function(req, res) {
+  console.log("edit profile reached");
+  console.log(req.body);
+  var data = req.user;
+  console.log(req.user);
+  console.log(typeof data);
+  console.log(data.local);
+  res.render("./user/editprofile.ejs", {data:data});
+});
+
 
 // =========================
 // Updates profile page
@@ -128,7 +137,7 @@ router.delete('/profile/:id', function(req, res) {
   console.log('deleting ' + req.params.id);
   User.remove({_id: req.params.id}).exec();
 
-  res.redirect("/user");
+  res.redirect("/");
 });
 
 

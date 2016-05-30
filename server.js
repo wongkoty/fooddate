@@ -33,12 +33,26 @@ app.use(methodOverride(function(req, res){
   }
 }));
 app.use(session({secret: "secret",
-                saveUninitialized: true,
-                resave: false}));
+                saveUninitialized: true, //save to store when it is new but not modified
+                resave: false})); //saves even if not modified
 app.use(passport.initialize()); //initializes passport
 app.use(passport.session()); // uses passport sessions
 app.use(express.static("public"));
 
+// =========================
+// Index
+// =========================
+app.get("/", function(req, res) {
+  // console.log("main route works");
+  console.log(req.cookies);
+  console.log(req.session);
+  console.log(req.user);
+  if (req.user == null) {
+    res.render("./user/index.ejs");
+  } else {
+    res.redirect("/user");
+  }
+})
 
 // =========================
 // Controllers

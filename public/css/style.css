@@ -1,4 +1,75 @@
-body {
-	background-color: papayawhip;
+#intro-page-container {
 	text-align: center;
+	margin: 0 auto;
+	margin-top: 8em;
+	max-width: 750px;
+}
+.intro-class {
+	padding: 2em 3em;
+	display: inline-block;
+}
+h1{
+	font-size: 7em;
+	animation: fadeinheader 3s;
+	-webkit-animation: fadeinheader 3s; /* Safari, Chrome and Opera > 12.1 */
+}
+a {
+	text-decoration: none;
+	color: purple;
+	font-size: 3em;
+	animation: fadein 2s;
+	-webkit-animation: fadein 2s;
+}
+a:hover {
+	text-decoration:line-through
+}
+@keyframes fadeinheader {
+    0% { opacity: 0; }
+    10% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeinheader {
+    0% { opacity: 0; }
+    10% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+@keyframes fadein {
+    0% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    0% { opacity: 0; }
+    100%  { opacity: 1; }
+}
+
+footer {
+	text-align: center;
+	margin-top: 3em;
+}
+footer a{
+	font-size: 16px;
+	color: black;
+}
+
+/*IMPORTED FONTS*/
+@font-face {
+  font-family: drakeFont;
+  src: url("/fonts/Late-Regular.otf");
+}
+
+/*MEDIA QUERIES FAM*/
+
+@media (max-width: 800px) {
+	#intro-page-container {
+		max-width: 400px;
+		margin-top: 16em;
+	}
+	h1 {
+		font-size: 3em;
+	}
+	a {
+		font-size: 1em;
+	}
 }
