@@ -37,6 +37,7 @@ app.use(session({secret: "secret",
                 resave: false}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(twilioNotifications.notifyOnError);
 app.use(express.static("public"));
 
 

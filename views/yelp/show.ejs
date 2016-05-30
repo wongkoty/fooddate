@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<title></title>
 </head>
 <body>
 	<a href="<%= data.url %>"><%= data.name%></a> </br>
+	<b>Phone Number: </b> <%= data.display_phone %> </br>
+	<b>Address: </b> <% for (i = 0; i < data.location.display_address.length; i++) { %>
+		<%= data.location.display_address[i] + "," %>
+	<% } %>
+	<b>Cusine: </b> <% for (i = 0; i < data.categories.length; i++) { %>
+		<%= data.categories[i][0] + ", " %>
+	<% } %> </br>
+	<img src="<%= data.rating_img_url %>">
 		<form action="/index/user" method="POST">
 		<input type="text" name="first_name" placeholder="First Name"></br>
 		<input type="text" name="last_name" placeholder="Last Name"></br>

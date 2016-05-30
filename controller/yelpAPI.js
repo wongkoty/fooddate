@@ -20,7 +20,6 @@ var yelp = new Yelp({
 // =========================
 router.get("/yelp", function(req, res) {
   console.log('test route APIcontroller works');
-
   res.render("./yelp/search.ejs")
 });
 
@@ -64,11 +63,11 @@ router.get("/yelp/:id", function(req,res){
 // Posts query parameters
 // ==============================
 router.post("/yelp/index", function(req, res) {
-  console.log("post route works");
+  console.log("yelp post route works");
   console.log(req.body);
   // var test = JSON.stringify(req.body);
   // res.cookie("term", req.body.term);
-  yelp.search({ term: req.body.term, location: req.body.location })
+  yelp.search({ term: req.body.term, limit: 10, location: req.body.location })
   .then(function (data) {
     console.log(data);
     res.render("./yelp/index.ejs", {data});

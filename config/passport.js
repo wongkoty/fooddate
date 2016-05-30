@@ -15,6 +15,7 @@ module.exports = function(passport) {
   //deserialize user
   passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
+      user.local.first_name = "";
       done(err, user);
     });
 });
@@ -28,10 +29,15 @@ module.exports = function(passport) {
     passReqToCallback: true // passes entire request to callback
   }, 
   function(req, email, password, done) {
+    console.log("this is the req " + req);
+     // console.log("this is the reqbody firstname " + req.body.first_name);
+      console.log("this is the req.body.email " + req.body.email);
+       console.log("this is the req email " + email);
 
     process.nextTick(function() {
 
       User.findOne({ "local.email": email }, function(err, user) {
+        // console.log(user);
         if (err) {
           console.log("there is an error!");
           return done(err); //checks for an error in email
@@ -42,7 +48,16 @@ module.exports = function(passport) {
         } else { //if not, creates new user. Calls model method to hash password
           console.log("no email used yet!");
           var newUser = new User();
-          // console.log(newUser);
+          console.log(newUser);
+          console.log(email);
+          // console.log(phone_number);
+          console.log(req.body.first_name);
+          newUser.first_name = req.body.first_name;
+          newUser.last_name = req.body.last_name;
+          newUser.phone_number = req.body.phone_number;
+          // newUser.first_name = first_name;
+          // newUser.last_name = last_name;
+          // newUser.phone_number = phone_number;
           newUser.local.email = email;
           console.log(newUser);
           // console.log(newUser.generateHash(password));
