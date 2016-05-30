@@ -4,6 +4,7 @@
 	<title></title>
 </head>
 <body>
+
 profile page</br>
 
 <a href="/user/yelp/">Make a search</a>
@@ -35,6 +36,11 @@ profile page</br>
 	  <input type="hidden" name="_method" value="put">
     <button type="submit">Signup</button>
   </form>
+
+  <form action="/user/profile/<%= data.id %>" method="POST">
+  	<input type="hidden" name="_method" value="DELETE"/>
+  	<button>Delete brah?</button>
+	</form>
 	</div>
 
 

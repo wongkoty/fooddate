@@ -119,6 +119,14 @@ router.put("/profile", isLoggedIn, function(req, res) {
   });
 });
 
+// =========================
+// DELETE PROFILE
+// =========================
+
+
+
+
+
 // // =========================
 // // Updates profile page
 // // =========================
@@ -143,3 +151,186 @@ function isLoggedIn(req, res, next) {
 
 
 module.exports = router;
+
+
+
+// ==============================
+// JUNK
+// ==============================
+
+
+// ==============================
+// Was trying very hard to send back errors for incorrect validation fields
+// tried multiple things, but have to scrap for now 
+// ==============================
+
+// // posts index page
+// router.post("/index", categoryCtrl, homeCtrl);
+// // {
+// //   // console.log("post route works");
+// //   console.log(req.body);
+// //   yelp.search({ term: 'food', limit: 3, location: req.body.location}).then(function (data) {
+// //     console.log(data);
+// //     // res.json(data);
+// //     res.render("index.ejs", {data}); //sends down json of returned search by user parameters
+// //   }).catch(function (err) {
+// //     console.error(err);
+// // });
+// // };
+
+// router.get("/userform", function(req, res, next) {
+//   console.log("userform works");
+//   res.render("userform.ejs", { title: "form validation", success: false, errors: req.session.errors});
+//   req.session.errors = null;
+// });
+
+// // router.post("/index/user", function(req, res, next){
+// //   console.log("user route works");
+// // });
+
+// router.get("/testroute", function(req, res, next) {
+//   console.log('testroute works');
+//   res.render("test.ejs", { title: "form validation", success: false, errors: req.session.errors});
+//   req.session.errors = null;
+// })
+
+
+// router.post("/index/user", function(req, res, next){
+//   console.log("user route works");
+//   // var user = new User(req.body);
+
+//   // user.save(function(err) {
+//   //   assert.equal(error.errors['name'].message,
+//   //     'Path `name` is required.');
+
+//   //   error = user.validateSync();
+//   //   assert.equal(error.errors['name'].message,
+//   //     'Path `name` is required.');
+//   req.check("email", "invalid e-mail").isEmail();
+//   req.check("first_name", "Password is invalid").isLength({min: 4});
+
+//   var errors = req.validationErrors();
+//   if (errors) {
+//     req.session.errors = errors;
+//   } else {
+//     res.redirect("/testroute");
+//     console.log("yay")
+//   }
+
+//     // if(err) {
+//     //   console.log(err);
+
+//     //   // prompt("require e-mail");
+//     //   // res.status(500).send('Something broke!');
+//     // } else {
+//     //   console.log('New instance saved');
+//     //   res.send(user)
+//   // })
+
+//    // var cat = new Cat();
+//    //  cat.save(function(error) {
+//    //    assert.equal(error.errors['name'].message,
+//    //      'Path `name` is required.');
+
+//    //    error = cat.validateSync();
+//    //    assert.equal(error.errors['name'].message,
+//    //      'Path `name` is required.');
+//    //  });
+  
+
+// });
+
+// function homeCtrl(req, res) {
+//   console.log("test homeCtrl");
+//   console.log(req.body);
+
+//   // res.render("index.ejs");
+//   // Prepare the context
+//   var data = req.dataProcessed;
+//   console.log(data);
+//   res.render('index.ejs', {data});
+// }
+
+// function categoryCtrl(req, res, next) {
+//   console.log("test category Ctrl");
+//   console.log(req.body);
+//   console.log(req.body.category_filter)
+//     // Process the data received in req.body
+//     // instead of res.redirect('/');
+//     yelp.search({ term: req.body.term, limit: 5, category_filter: req.body.category_filter, location: req.body.location}).then(function (data) {
+//       console.log(data);
+//       // res.json(data);
+//       req.dataProcessed = data;
+//       return next();
+//       // res.render("index.ejs", {data}); //sends down json of returned search by user parameters
+//     });
+//     // .catch(function (err) {
+//     //   console.error(err);
+//     // });
+   
+//     // optionally - Same effect
+//     // accept no need to define homeCtrl
+//     // as the last piece of middleware
+//     // return homeCtrl(req, res, next);
+// }
+
+// ==============================
+// user sign up
+// ==============================
+// router.get("/sign_up", function(req, res) {
+//   console.log("sign up page works");  
+//   res.render("sign_up.ejs");
+// });
+
+// ==============================
+// Login
+// ==============================
+// router.get("/login", function(req, res) {
+//   console.log("login page works");  
+//   res.render("login.ejs");
+// });
+
+// ==============================
+// save new user
+// ==============================
+// router.post("/sign_up", function(req, res) {
+//   console.log("sign up success route");
+//   console.log(req.body);
+//   var user = new User(req.body);
+//   user.save(function(err, req) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("saved");
+//     }
+//   })
+//   res.redirect("/");
+// })
+
+// app.post('/category', categoryCtrl, homeCtrl);
+
+
+// router.get("/index", homeCtrl);
+// {
+  // console.log("index route works");
+  // console.log(req.body);
+  // // console.log(User);
+  // console.log(User.findOne({first_name: "Koty"}));
+  // User.findOne({first_name: "Koty"}).then(function(user) {
+  //   console.log("it runs")
+  //   console.log(user);
+  // });
+
+  // User.findById("5748ad828b3f540c30a82b34").then(function(user) {
+  //   console.log("it runs")
+  //   console.log(user);
+  // });
+  // User.search();
+    // yelp.search({ term: 'food', location: 'Manhattan' }).then(function (data) {
+    //   // console.log(data);
+    //   // res.json(data);
+    //   res.render("index.ejs", {data});
+    // }).catch(function (err) {
+    //   console.error(err);
+    // });
+// });

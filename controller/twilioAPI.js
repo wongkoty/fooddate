@@ -21,7 +21,8 @@ router.post("/twilio", function(req, res) {
   console.log(test);
   console.log(typeof test);
   console.log(test.addresss);
-  var sendThis = "Hey there, [insert name] wants to invite you to " + test.restaurant_name;
+  console.log(req.user);
+  var sendThis = "Yo " + test.friends + ", " + req.user.first_name + " wants to invite you to " + test.restaurant_name + " at " + test.address + ", " + test.city + " on " + test.date;
   var sendThisNumber = "+1" + test.phone_number;
   console.log(sendThis);
   console.log(sendThisNumber);
