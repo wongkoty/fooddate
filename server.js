@@ -35,16 +35,16 @@ app.use(methodOverride(function(req, res){
 app.use(session({secret: "secret",
                 saveUninitialized: true,
                 resave: false}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(twilioNotifications.notifyOnError);
+app.use(passport.initialize()); //initializes passport
+app.use(passport.session()); // uses passport sessions
 app.use(express.static("public"));
 
 
 // =========================
-// Controller
+// Controllers
 // =========================
-var userController = require("./controller/user.js")
+//for user controller flow
+var userController = require("./controller/user.js") 
 app.use("/user", userController);
 
 

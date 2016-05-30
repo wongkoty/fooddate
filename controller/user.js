@@ -8,11 +8,20 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 
 // =========================
-// Controller
+// Controllers
 // =========================
-var yelpAPIController = require("./yelpAPI.js")
+
+
+
+//can now access the twilio controller if logged in
+var twilioAPIController = require("./twilioAPI.js");
+router.all("/test/*", isLoggedIn, twilioAPIController);
+
+//can now access the yelp controller if logged in
+var yelpAPIController = require("./yelpAPI.js");
 router.all("/yelp/*", isLoggedIn, yelpAPIController); //protects yelp route
 // router.get("/yelp/index", isLoggedIn, yelpAPIController);
+
 
 // =========================
 // Index
@@ -124,6 +133,7 @@ router.put("/profile", isLoggedIn, function(req, res) {
 
 // Checks if user is authenticated
 function isLoggedIn(req, res, next) {
+  console.log("is logged in runs");
   if (req.isAuthenticated()) {
     return next();
   } else {

@@ -14,11 +14,11 @@
 		<%= data.categories[i][0] + ", " %>
 	<% } %> </br>
 	<img src="<%= data.rating_img_url %>">
-		<form action="/index/user" method="POST">
-		<input type="text" name="first_name" placeholder="First Name"></br>
+		<form action="/user/twilio" method="POST">
+	<!-- 	<input type="text" name="first_name" placeholder="First Name"></br>
 		<input type="text" name="last_name" placeholder="Last Name"></br>
 		<input type="text" name="email" placeholder="E-mail"></br>
-		<input type="text" name="friends" placeholder="Friends"></br>
+		<input type="text" name="friends" placeholder="Friends"></br> -->
 		<input type="text" name="phone_number" placeholder="Phone Number"></br>
 		<input type="reset"></br>
 		<button type="submit" class="button">Send request</button>
