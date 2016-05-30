@@ -15,7 +15,7 @@ var LocalStrategy = require("passport-local").Strategy;
 
 //can now access the twilio controller if logged in
 var twilioAPIController = require("./twilioAPI.js");
-router.all("/test/*", isLoggedIn, twilioAPIController);
+router.all("/twilio/", isLoggedIn, twilioAPIController);
 
 //can now access the yelp controller if logged in
 var yelpAPIController = require("./yelpAPI.js");

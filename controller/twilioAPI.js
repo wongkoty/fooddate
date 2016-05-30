@@ -16,15 +16,25 @@ router.get("/twilio", function(req, res) {
 
 router.post("/twilio", function(req, res) {
   console.log("test twilio works");
-  console.log(req.body);
+  // console.log(req.body);
+  var test = req.body;
+  console.log(test);
+  console.log(typeof test);
+  console.log(test.addresss);
+  var sendThis = "Hey there, [insert name] wants to invite you to " + test.restaurant_name;
+  var sendThisNumber = "+1" + test.phone_number;
+  console.log(sendThis);
+  console.log(sendThisNumber);
+  // console.log(req.body.address.display_address);
     client.sendMessage({
-    to: "+" + req.body.phone_number,
-    from: "+13478629876",
-    body: "hey THere"
+    to: sendThisNumber,
+    // from: "+13478629876",
+    body: sendThis
   }), function(err, data){
     if(err)
       console.log(err);
     console.log(data);
+    res.redirect("/user");
   }
 });
 

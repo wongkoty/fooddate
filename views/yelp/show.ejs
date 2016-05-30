@@ -5,6 +5,7 @@
 	<title></title>
 </head>
 <body>
+
 	<a href="<%= data.url %>"><%= data.name%></a> </br>
 	<b>Phone Number: </b> <%= data.display_phone %> </br>
 	<b>Address: </b> <% for (i = 0; i < data.location.display_address.length; i++) { %>
@@ -15,10 +16,12 @@
 	<% } %> </br>
 	<img src="<%= data.rating_img_url %>">
 		<form action="/user/twilio" method="POST">
-	<!-- 	<input type="text" name="first_name" placeholder="First Name"></br>
-		<input type="text" name="last_name" placeholder="Last Name"></br>
-		<input type="text" name="email" placeholder="E-mail"></br>
-		<input type="text" name="friends" placeholder="Friends"></br> -->
+		<!-- <input type="text" name="first_name" placeholder="First Name"></br> -->
+		<!-- <input type="text" name="last_name" placeholder="Last Name"></br> -->
+		<!-- <input type="text" name="email" placeholder="E-mail"></br> -->
+		<input type="hidden" name="restaurant_name" value="<%= data.name %>"></br>
+		<input type="hidden" name="address" value="<%= data.location %>"></br>
+		<input type="text" name="friends" placeholder="Friend's Name"></br>
 		<input type="text" name="phone_number" placeholder="Phone Number"></br>
 		<input type="reset"></br>
 		<button type="submit" class="button">Send request</button>
