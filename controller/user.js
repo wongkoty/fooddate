@@ -4,7 +4,7 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
-// var LocalStrategy = require("passport-local").Strategy;
+var LocalStrategy = require("passport-local").Strategy;
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // FUNCTION SECTION
@@ -31,22 +31,22 @@ router.get("/login", function(req, res) {
 // =========================
 // Post login
 // =========================
-router.post('/login', passport.authenticate('local-login'),
-function(req, res) {
-  console.log("login works");
-  console.log(req.user);
-  res.redirect("/user");
-});
+// router.post('/login', passport.authenticate('local-login'),
+// function(req, res) {
+//   console.log("login works");
+//   console.log(req.user);
+//   res.redirect("/user");
+// });
 
 
 // // =========================
 // // Post login
 // // =========================
-// router.post('/login', passport.authenticate('local-login', {
-//   successRedirect: '/user', // redirect to the secure profile section
-//   failureRedirect: '/user/login', // redirect back to the signup page if there is an error
-//   failureFlash : true // allow flash messages
-// }));
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/user', // redirect to the secure profile section
+  failureRedirect: '/user/login', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
+}));
 
 // =========================
 // Signup page
@@ -59,16 +59,16 @@ router.get("/signup", function(req, res) {
 // =========================
 // Post signup 
 // =========================
-router.post("/signup", passport.authenticate("local-signup"), 
-  function(req, res) {
-    console.log("new signup route works");
-    res.redirect("/user");
-});
-// router.post("/signup", passport.authenticate("local-signup", {
-//   successRedirect: "/user", // success brings you to profile page
-//   failureRedirect: "/user/signup", // redirects back to signup page upon failure
-//   failureFlash: true //allows flash message for failure
-// }));
+// router.post("/signup", passport.authenticate("local-signup"), 
+//   function(req, res) {
+//     console.log("new signup route works");
+//     res.redirect("/user");
+// });
+router.post("/signup", passport.authenticate("local-signup", {
+  successRedirect: "/user/profile", // success brings you to profile page
+  failureRedirect: "/user/signup", // redirects back to signup page upon failure
+  failureFlash: true //allows flash message for failure
+}));
 
 
 // =========================

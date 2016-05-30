@@ -32,7 +32,7 @@ module.exports = function(passport) {
 
     process.nextTick(function() {
 
-      User.findOne({ "local.email": email }, function(err, user, done) {
+      User.findOne({ "local.email": email }, function(err, user) {
         if (err) {
           console.log("there is an error!");
           return done(err); //checks for an error in email
@@ -46,9 +46,18 @@ module.exports = function(passport) {
           // console.log(newUser);
           newUser.local.email = email;
           console.log(newUser);
-          newUser.generateHash(password, newUser);
+          // console.log(newUser.generateHash(password));
+          newUser.local.password = newUser.generateHash(password);
+          console.log(newUser.local.password);
+          
+          newUser.save(function(err) {
+            if (err) {
+              throw err;
+            } else {
+              return done(null, newUser);
+            }
+          });
         }
-
       });
     });
   }));
