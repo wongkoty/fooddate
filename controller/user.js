@@ -99,6 +99,25 @@ router.get("/", isLoggedIn, function(req, res) {
 });
 
 // =========================
+// Add Friend page
+// =========================
+router.get("/add", isLoggedIn, function(req, res) {
+  console.log("add friend route reached");
+  res.render("./user/addfriend.ejs");
+});
+
+// =========================
+// Search for friend
+// =========================
+router.post("/add", isLoggedIn, function(req, res) {
+  console.log("post friend route reached");
+  console.log(req.body.email);
+  User.findOne({"local.email": req.body.email}).then(function(user) {
+    console.log(user);
+  })
+});
+
+// =========================
 // Edit profile page
 // =========================
 router.get("/:id", isLoggedIn, function(req, res) {
@@ -128,6 +147,9 @@ router.put("/profile/:id", isLoggedIn, function(req, res) {
   });
   res.redirect("/user/profile");
 });
+
+
+
 
 // =========================
 // DELETE PROFILE

@@ -77,7 +77,7 @@ router.post("/yelp/index", function(req, res) {
   // req.session.data = req.body; // trying to set session to the body to refer to in my index
   // var test = JSON.stringify(req.body);
   // res.cookie("term", req.body.term);
-  yelp.search({ term: req.body.term, limit: 10, radius_filter: toMeters, location: req.body.location })
+  yelp.search({ term: req.body.term, limit: 10, sort: req.body.sort, radius_filter: toMeters, location: req.body.location })
   .then(function (data) {
     console.log("yelp search rendered");
     // console.log(data);

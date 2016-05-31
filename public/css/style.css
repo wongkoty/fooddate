@@ -20,9 +20,6 @@ a {
 	animation: fadein 2s;
 	-webkit-animation: fadein 2s;
 }
-a:hover {
-	text-decoration:line-through
-}
 @keyframes fadeinheader {
     0% { opacity: 0; }
     10% { opacity: 0; }
