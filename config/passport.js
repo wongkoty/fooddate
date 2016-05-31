@@ -18,7 +18,7 @@ module.exports = function(passport) {
     User.findById(id, function(err, user) {
       done(err, user);
     });
-  });
+});
 
 // =========================
 // local signup
@@ -28,7 +28,7 @@ module.exports = function(passport) {
     passwordField: "password",
     passReqToCallback: true // passes entire request to callback
   }, 
-    function(req, email, password, done) {
+  function(req, email, password, done) {
     // console.log("this is req.body.first_name " + req.body.first_name)
     // console.log("this is the req.body.last_name " + req.body.last_name);
     // console.log("this is the req.body.phone_number " + req.body.phone_number);
@@ -37,25 +37,27 @@ module.exports = function(passport) {
     // console.log("this is the req.body.password2 " + req.body.password2);
     // console.log("====================================");
 
-      req.checkBody("first_name", "First name is required").notEmpty();
-      req.checkBody("last_name", "Last name is required").notEmpty();
-      req.checkBody("phone_number", "Invalid phone number").notEmpty().isInt();
-      // req.checkBody("phone_number", "Phone Number is not a number");
-      req.checkBody('email', 'An email is required').notEmpty()
-      req.checkBody('email', 'A valid email is required').isEmail();
-      req.checkBody("password", "Password is required").notEmpty();
-      req.checkBody("password", "Password is too short").len(6);
-      req.checkBody("password2", "Passwords don't match").equals(req.body.password);
+    req.checkBody("first_name", "First name is required").notEmpty();
+    req.checkBody("last_name", "Last name is required").notEmpty();
+    req.checkBody("phone_number", "Invalid phone number").notEmpty().isInt();
+    // req.checkBody("phone_number", "Phone Number is not a number");
+    req.checkBody('email', 'An email is required').notEmpty()
+    req.checkBody('email', 'A valid email is required').isEmail();
+    req.checkBody("password", "Password is required").notEmpty();
+    req.checkBody("password", "Password is too short").len(6);
+    req.checkBody("password2", "Passwords don't match").equals(req.body.password);
 
-      var errors = req.validationErrors();
+    var errors = req.validationErrors();
 
-      if(errors) {  //checks for errors
-        // console.log("these are the errors " + errors)
-        console.log(errors[0].msg);
-        // console.log(typeof errors);
-        // return done(res.render("/user/signup", {message: req.flash(errors)});
-        return done(null, false, req.flash("signupMessage", errors));
-      }
+    if(errors){  //checks for errors
+      // console.log("these are the errors " + errors)
+      console.log(errors[0].msg);
+      // console.log(typeof errors);
+      // return done(res.render("/user/signup", {message: req.flash(errors)});
+      return done(null, false, req.flash("signupMessage", errors));
+    }
+
+    process.nextTick(function() {
 
       User.findOne({ "local.email": email }, function(err, user) {
         console.log(user);
@@ -67,10 +69,11 @@ module.exports = function(passport) {
           console.log("email already taken");
           return done(null, false, req.flash("signupMessage", "That email is already taken."));
         } else { //if not, creates new user. Calls model method to hash password
-
           console.log("no email used yet!");
           var newUser = new User();
           var newFriends = new Friends();
+
+
           console.log(newUser);
           console.log(email);
           // console.log(phone_number);
@@ -106,10 +109,10 @@ module.exports = function(passport) {
               return done(null, newUser);
             }
           });
-          }
-        });
-    }
-  ));
+        }
+      });
+    });
+  }));
 
   // =========================
   // Local login
@@ -119,7 +122,8 @@ module.exports = function(passport) {
     passwordField: "password",
     passReqToCallback: true // passes entire request to callback
   }, 
-    function(req, email, password, done) {
+  function(req, email, password, done) {
+    process.nextTick(function() {
 
       User.findOne({ "local.email": email}, function(err, user) {
         console.log(user);
@@ -137,8 +141,7 @@ module.exports = function(passport) {
         }
         return done(null, user);
       });
-    }
-  ));
-
+    });
+  }));
 
 };

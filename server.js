@@ -13,14 +13,14 @@ var bodyParser = require('body-parser');
 var methodOverride = require("method-override")
 var session = require('express-session');
 var configDB = require("./config/database.js")
-var db = process.env.MONGODB_URI || "mongodb://localhost/food_date_app_dev";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/food_date_app_dev";
 var port = process.env.PORT || 3000;
 
 // =========================
 // Middleware
 // =========================
 app.use(logger("dev"));
-mongoose.connect(db);
+mongoose.connect(MONGODB_URI);
 require("./config/passport")(passport); //configuration for passsport
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

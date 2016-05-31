@@ -5,8 +5,12 @@
 	<title></title>
 </head>
 <body>
+<header>
+	<h1>Where would you like to eat?</h1>
+</header>
+
 	<div id="container">
-		<h1>Where would you like to eat?</h1>
+	
 			<div id="search-form">
 		<% for (i = 0; i < data.businesses.length; i++) { %>
 			<a href="/user/yelp/<%= data.businesses[i].id %>"><%= data.businesses[i].name%></a> </br>

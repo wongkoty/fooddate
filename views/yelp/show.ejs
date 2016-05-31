@@ -6,7 +6,7 @@
 	<title></title>
 </head>
 <body>
-
+<h1>Invite a Homie</h1>
 	<div id="container">
 		<a href="<%= data.url %>"><%= data.name%></a> </br>
 		<b>Phone Number: </b> <%= data.display_phone %> </br>
@@ -17,6 +17,7 @@
 			<%= data.categories[i][0] + ", " %>
 		<% } %> </br>
 		<img src="<%= data.rating_img_url %>">
+		<div id="map"></div>
 			<form action="/user/twilio" method="POST">
 			<!-- <input type="text" name="first_name" placeholder="First Name"></br> -->
 			<!-- <input type="text" name="last_name" placeholder="Last Name"></br> -->
@@ -33,7 +34,22 @@
 		</form></br>
 		<a href="javascript:history.back()">Go back</a>
 	</div>
-	
+
+   <script>
+      function initMap() {
+        var mapDiv = document.getElementById('map');
+        var myLatLong = {lat:<%=data.location.coordinate.latitude%>, lng:<%=data.location.coordinate.longitude%>};
+        var map = new google.maps.Map(mapDiv, {
+          center: myLatLong,
+          zoom: 16
+        });
+        var marker = new google.maps.Marker({
+			    position: myLatLong,
+			    map: map
+			  });
+      }
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
 </body>
 </html>
 

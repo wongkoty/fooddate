@@ -6,6 +6,7 @@ var request = require("request");
 var router = express.Router();
 var Yelp = require('yelp');
 var User = require("../models/user.js");
+var doesThisPrint = 123;
 
 
 var yelp = new Yelp({
@@ -58,6 +59,8 @@ router.get("/yelp/:id", function(req,res){
 // });
   yelp.business(req.params.id).then(function(data){
     console.log(data);
+    console.log(data.location.coordinate.latitude);
+    console.log(typeof data.location.coordinate.latitude);
     res.render("./yelp/show.ejs", {data});
   })
   .catch(function (err) {

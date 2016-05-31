@@ -19,6 +19,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "express-validator": "^2.20.5",
+    "google-maps": "^3.2.1",
     "mongoose": "^4.4.19",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",

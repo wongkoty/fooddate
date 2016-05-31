@@ -16,9 +16,25 @@ a {
 a:hover {
 	text-decoration:line-through
 }
+header {
+	margin-top: 2em;
+	text-align: center;
+}
+nav.main-nav {
+	background-color: purple;
+	text-align: center;
+}
+nav.main-nav a {
+	display: inline-block;
+}
+nav ul li {
+	width: 50%; 
+	float: right;
+	list-style: none;
+}
 #container {
 	text-align: center;
-	margin-top: 5em;
+	margin-top: 3em;
 }
 input.typeform, select{
 	font-size: 1.1em;
@@ -27,4 +43,9 @@ input.typeform, select{
 }
 #search-form {
 	margin-top: 2em;
+}
+#map {
+	margin: 0 auto;
+	width: 350px;
+  height: 350px;
 }
