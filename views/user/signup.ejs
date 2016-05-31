@@ -7,37 +7,46 @@
 <body>
 
 <% if (message.length > 0) { %>
-          <div class="error-alert">
-            <%= message %>
-          </div>
+	The following errors occured:
+	<%	for(i = 0; i < message.length; i++) { %>
+      <div class="error-alert">
+        <li><%= message[i].msg %></li>
+      </div>
+ <% } %>
 <% } %>
 
- <form action="/user/signup" method="post">
- 		<div>
-      <label>First Name</label>
-      <input type="text" name="first_name">
-	  </div>
-	  <div>
-      <label>Last Name</label>
-      <input type="text" name="last_name">
-	  </div>
-	  <div>
-      <label>Phone Number</label>
-      <input type="text" name="phone_number">
-	  </div>
-	  <div>
-	      <label>Email</label>
-	      <input type="text" name="email">
-	  </div>
-	  <div>
-	      <label>Password</label>
-	      <input type="password" name="password">
-	  </div>
-    <button type="submit">Signup</button>
-  </form>
+<div id="container">
+	<h1>Sign Up </h1></br>
+	 <form action="/user/signup" method="post">
+	 		<div>
+	      <label>First Name</label>
+	      <input type="text" name="first_name">
+		  </div>
+		  <div>
+	      <label>Last Name</label>
+	      <input type="text" name="last_name">
+		  </div>
+		  <div>
+	      <label>Phone Number</label>
+	      <input type="text" name="phone_number">
+		  </div>
+		  <div>
+		      <label>Email</label>
+		      <input type="text" name="email">
+		  </div>
+		  <div>
+		      <label>Password</label>
+		      <input type="password" name="password" placeholder"min 6 characters">
+		  </div>
+		   <div>
+		      <label>Confirm Password</label>
+		      <input type="password" name="password2" placeholder"min 6 characters">
+		  </div>
+	    <button type="submit">Signup</button>
+	  </form>
 
-  <a href="./login">Login</a>
-  <a href="./">home</a>
-
+	  <a href="./login">Login</a>
+	  <a href="./">home</a>
+</div>
 </body>
 </html>

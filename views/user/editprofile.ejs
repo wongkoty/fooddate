@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<link rel="stylesheet" type="text/css" href="/css/master.css">
+	<title>Edit Profile</title>
 </head>
 <body>
 
-	<div id="sign-up">
-	 <form action="/user/profile/<%= data.id %>" method="post">
- 		<div>
-      <label>First Name</label>
-      <input type="text" name="first_name" value="<%= data.first_name %>">
-	  </div>
-	  <div>
-	  	<label>Last Name</label>
-	    <input type="text" name="last_name" value="<%= data.last_name %>">
-	  </div>
-	  <div>
-	    <label>Phone Number</label>
-	    <input type="text" name="phone_number" value="<%= data.phone_number %>">
-	  </div>
-	  <input type="hidden" name="_method" value="put">
-    <button type="submit">Update</button>
-  </form>
+	<div id="container">
+		<h1>Edit Profile</h1></br>
+		 <form action="/user/profile/<%= data.id %>" method="post">
+	 		<div>
+	      <label>First Name</label>
+	      <input type="text" name="first_name" value="<%= data.first_name %>">
+		  </div>
+		  <div>
+		  	<label>Last Name</label>
+		    <input type="text" name="last_name" value="<%= data.last_name %>">
+		  </div>
+		  <div>
+		    <label>Phone Number</label>
+		    <input type="text" name="phone_number" value="<%= data.phone_number %>">
+		  </div>
+		  <input type="hidden" name="_method" value="put">
+	    <button type="submit">Update</button>
+	  </form>
 
 <a href="/user/yelp/">Make a search</a></br>
 <a href="/user/logout">Logout</a></br>
