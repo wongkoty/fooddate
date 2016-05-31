@@ -4,6 +4,7 @@
 var express = require("express");
 var router = express.Router();
 var User = require("../models/user.js");
+var Friends = require("../models/friends.js");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 
@@ -111,10 +112,17 @@ router.get("/add", isLoggedIn, function(req, res) {
 // =========================
 router.post("/add", isLoggedIn, function(req, res) {
   console.log("post friend route reached");
-  console.log(req.body.email);
-  User.findOne({"local.email": req.body.email}).then(function(user) {
-    console.log(user);
-  })
+  // console.log(req.body.email);
+  console.log(req.session.id);
+  console.log(req.user);
+  Friends.findOne({"email": req.body.email}).then(function(friend) {
+    console.log(friend);
+    User.findOne({_id: req.user.id}).then(function(user) {
+      console.log(user);
+      user.friends.push({friends: friend});
+      user.save();
+    });
+  });
 });
 
 // =========================

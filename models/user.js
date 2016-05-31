@@ -3,9 +3,10 @@
 // =========================
 var mongoose = require("mongoose");
 var bcrypt = require("bcrypt-nodejs");
+var Friends = require("./friends.js");
 
 
-var userSchema = mongoose.Schema({
+var userSchema = new mongoose.Schema({
   first_name: {
     type: String,
     required: true
@@ -14,7 +15,7 @@ var userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  friends: Array,
+  friends: [friendsSchema],
   phone_number: Number,
   local : {
     email: {
@@ -32,6 +33,10 @@ var userSchema = mongoose.Schema({
     token: String,
     email: String,
     name: String
+  },
+  created: {
+    type: Date, 
+    default: Date.now
   }
 });
 
@@ -82,3 +87,5 @@ userSchema.methods.validPassword = function(password, hash) {
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
+

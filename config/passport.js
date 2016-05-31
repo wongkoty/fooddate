@@ -4,6 +4,7 @@
 var passport = require('passport');
 var LocalStrategy = require("passport-local").Strategy;
 var User = require("../models/user.js");
+var Friends = require("../models/friends.js");
 
 module.exports = function(passport) {
 
@@ -44,7 +45,7 @@ module.exports = function(passport) {
     req.checkBody('email', 'A valid email is required').isEmail();
     req.checkBody("password", "Password is required").notEmpty();
     req.checkBody("password", "Password is too short").len(6);
-    req.checkBody("first_name", "Passwords don't match").equals(req.body.password);
+    req.checkBody("password2", "Passwords don't match").equals(req.body.password);
 
     var errors = req.validationErrors();
 
@@ -70,6 +71,9 @@ module.exports = function(passport) {
         } else { //if not, creates new user. Calls model method to hash password
           console.log("no email used yet!");
           var newUser = new User();
+          var newFriends = new Friends();
+
+
           console.log(newUser);
           console.log(email);
           // console.log(phone_number);
@@ -77,14 +81,26 @@ module.exports = function(passport) {
           newUser.first_name = req.body.first_name;
           newUser.last_name = req.body.last_name;
           newUser.phone_number = req.body.phone_number;
+          newFriends.first_name = req.body.first_name;
+          newFriends.last_name = req.body.last_name;
+          newFriends.phone_number = req.body.phone_number;
           // newUser.first_name = first_name;
           // newUser.last_name = last_name;
           // newUser.phone_number = phone_number;
           newUser.local.email = email;
+          newFriends.email = email;
           console.log(newUser);
           // console.log(newUser.generateHash(password));
           newUser.local.password = newUser.generateHash(password);
           console.log(newUser.local.password);
+          
+          newFriends.save(function(err) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("new friend saved");
+            }
+          });
 
           newUser.save(function(err) {
             if (err) {

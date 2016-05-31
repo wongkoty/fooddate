@@ -6,18 +6,19 @@
 </head>
 <body>
 
-<% if (message.length > 0) { %>
-	The following errors occured:
-	<%	for(i = 0; i < message.length; i++) { %>
-      <div class="error-alert">
-        <li><%= message[i].msg %></li>
-      </div>
- <% } %>
-<% } %>
+
 
 <div id="container">
 	<h1>Sign Up </h1></br>
 	 <form action="/user/signup" method="post">
+			 <% if (message.length > 0) { %>
+			The following errors occured:
+			<%	for(i = 0; i < message.length; i++) { %>
+		      <div class="error-alert">
+		        <li><%= message[i].msg %></li>
+		      </div>
+		 <% } %>
+		<% } %>
 	 		<div>
 	      <label>First Name</label>
 	      <input type="text" name="first_name">
