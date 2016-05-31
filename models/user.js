@@ -6,7 +6,7 @@ var bcrypt = require("bcrypt-nodejs");
 var Friends = require("./friends.js");
 
 
-var userSchema = new mongoose.Schema({
+var userSchema = mongoose.Schema({
   first_name: {
     type: String,
     required: true
@@ -15,7 +15,7 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  friends: [friendsSchema],
+  friends: Array,
   phone_number: Number,
   local : {
     email: {

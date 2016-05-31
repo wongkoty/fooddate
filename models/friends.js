@@ -4,7 +4,7 @@
 var mongoose = require("mongoose");
 var Users = require("./user.js");
 
-var friendsSchema = new mongoose.Schema({
+var friendsSchema = mongoose.Schema({
   first_name: String
 });
 
