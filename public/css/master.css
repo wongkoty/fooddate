@@ -10,7 +10,7 @@ h1 {
 	font-size: 4em;
 }
 a {
-	font-size: 1.5em;
+	font-size: 1.3em;
 	text-decoration: none;
 }
 a:hover {
@@ -21,20 +21,21 @@ header {
 	text-align: center;
 }
 nav.main-nav {
-	background-color: purple;
+	/*background-color: purple;*/
 	text-align: center;
+	padding: 2em 0px;
 }
 nav.main-nav a {
 	display: inline-block;
 }
 nav ul li {
-	width: 50%; 
-	float: right;
+	width: 20%; 
+	float: left;
 	list-style: none;
 }
 #container {
 	text-align: center;
-	margin-top: 3em;
+	padding-top: 3em;
 }
 input.typeform, select{
 	font-size: 1.1em;
@@ -42,7 +43,7 @@ input.typeform, select{
 	/*margin-top: 1em;*/
 }
 #search-form {
-	margin-top: 2em;
+/*	margin-top: 2em;*/
 }
 #map {
 	margin: 0 auto;

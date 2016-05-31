@@ -128,7 +128,7 @@ router.post("/add", isLoggedIn, function(req, res) {
 // =========================
 // Edit profile page
 // =========================
-router.get("/:id", isLoggedIn, function(req, res) {
+router.get("/edit", isLoggedIn, function(req, res) {
   console.log("edit profile reached");
   console.log(req.body);
   var data = req.user;
@@ -153,7 +153,7 @@ router.put("/profile/:id", isLoggedIn, function(req, res) {
       console.log("saved");
     }
   });
-  res.redirect("/user/profile");
+  res.redirect("/user/");
 });
 
 
@@ -170,7 +170,10 @@ router.delete('/profile/:id', function(req, res) {
   res.redirect("/");
 });
 
-
+router.get('*', function(req, res){
+  // res.send('what???', 404);
+  res.render("./user/freg.ejs")
+});
 
 
 // // =========================

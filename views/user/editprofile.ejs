@@ -5,33 +5,42 @@
 	<title>Edit Profile</title>
 </head>
 <body>
+<header>
+	<h1>Edit Profile</h1>
+</header>
+<nav class="main-nav">
+	<ul>
+		<li><a href="/user">Profile</a></br></li>
+		<li><a href="/user/yelp/">Make a search</a></li>
+		<li><a href="/user/add">Add Friend</a></li>
+		<li><a href="/user/edit">Edit Profile</a></li>
+		<li><a href="/user/logout">Logout</a></li>	</ul>
+</nav>
 
 	<div id="container">
-		<h1>Edit Profile</h1></br>
+
 		 <form action="/user/profile/<%= data.id %>" method="post">
 	 		<div>
 	      <label>First Name</label>
-	      <input type="text" name="first_name" value="<%= data.first_name %>">
+	      <input type="text" class="typeform" name="first_name" value="<%= data.first_name %>">
 		  </div>
 		  <div>
 		  	<label>Last Name</label>
-		    <input type="text" name="last_name" value="<%= data.last_name %>">
+		    <input type="text" class="typeform" name="last_name" value="<%= data.last_name %>">
 		  </div>
 		  <div>
 		    <label>Phone Number</label>
-		    <input type="text" name="phone_number" value="<%= data.phone_number %>">
+		    <input type="text" class="typeform" name="phone_number" value="<%= data.phone_number %>">
 		  </div>
 		  <input type="hidden" name="_method" value="put">
 	    <button type="submit">Update</button>
+	      <form action="/user/profile/<%= data.id %>" method="POST">
+  				<input type="hidden" name="_method" value="DELETE"/>
+  				<button>Delete brah?</button>
+				</form>
 	  </form>
 
-<a href="/user/yelp/">Make a search</a></br>
-<a href="/user/logout">Logout</a></br>
 
-  <form action="/user/profile/<%= data.id %>" method="POST">
-  	<input type="hidden" name="_method" value="DELETE"/>
-  	<button>Delete brah?</button>
-	</form>
 	</div>
 
 </body>

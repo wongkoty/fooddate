@@ -5,17 +5,25 @@
 	<title></title>
 </head>
 <body>
-		<div id="container">
-		<h1>Search for friend</h1>
+<header>
+			<h1>Search for friend</h1>
+</header>
+<nav class="main-nav">
+	<ul>
+		<li><a href="/user">Profile</a></br></li>
+		<li><a href="/user/yelp/">Make a search</a></li>
+		<li><a href="/user/add">Add Friend</a></li>
+		<li><a href="/user/edit">Edit Profile</a></li>
+		<li><a href="/user/logout">Logout</a></li>	</ul>
+</nav>
+	<div id="container">
 		<div id="search-form">
 			<form action="/user/add" method="post">
 				<input class="typeform" type="text" name="email" placeholder="search by email"></br>
-				<input type="reset"></br>
 				<button class="button">Search</button>
+				<input type="reset">
 			</form>
 		</div>
-		<a href="/user">Profile</a></br>
-		<a href="/user/logout">Logout</a>
 	</div>
 </body>
 </html>

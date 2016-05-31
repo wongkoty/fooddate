@@ -21,7 +21,7 @@ var yelp = new Yelp({
 // =========================
 router.get("/yelp", function(req, res) {
   console.log('test route APIcontroller works');
-  res.render("./yelp/search.ejs")
+  res.render("./yelp/search.ejs", { message: req.flash("loginMessage")})
 });
 
 // =========================
@@ -80,7 +80,7 @@ router.post("/yelp/index", function(req, res) {
   // req.session.data = req.body; // trying to set session to the body to refer to in my index
   // var test = JSON.stringify(req.body);
   // res.cookie("term", req.body.term);
-  yelp.search({ term: req.body.term, limit: 10, sort: req.body.sort, radius_filter: toMeters, location: req.body.location })
+  yelp.search({ term: req.body.term, limit: 10, sort: req.body.sort, category_filter: "food", radius_filter: toMeters, location: req.body.location })
   .then(function (data) {
     console.log("yelp search rendered");
     // console.log(data);
@@ -90,6 +90,11 @@ router.post("/yelp/index", function(req, res) {
   })
   .catch(function (err) {
     console.error(err);
+    if (err.statusCode == 400 ){
+      console.log("error in input");
+      req.flash("searchErrorMessage", "Requires Location")
+      res.render("./yelp/search.ejs", { message: req.flash("searchErrorMessage")})
+    }
   });
   // cookieParser.JSONCookie(str)
 

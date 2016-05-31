@@ -12,10 +12,17 @@
 <nav class="main-nav">
 	<ul>
 		<li><a href="/user">Profile</a></br></li>
-		<li><a href="/user/logout">Logout</a></li>
-	</ul>
+		<li><a href="/user/yelp/">Make a search</a></li>
+		<li><a href="/user/add">Add Friend</a></li>
+		<li><a href="/user/edit">Edit Profile</a></li>
+		<li><a href="/user/logout">Logout</a></li>	</ul>
 </nav>
 
+		<% if (message.length > 0) { %>
+      <div class="error-alert">
+        <%= message %>
+      </div>
+    <% } %>
 
 	<div id="container">
 		<div id="search-form">
