@@ -65,6 +65,11 @@ router.get("/yelp/:id", function(req,res){
   })
   .catch(function (err) {
     console.error(err);
+    if (err.statusCode == 400 ){
+      console.log("error in input");
+      req.flash("ErrorMessage", "Doesn't exist")
+      res.render("./yelp/search.ejs", { message: req.flash("ErrorMessage")})
+    }
   })
 });
 
@@ -128,6 +133,11 @@ router.post("/yelp/index", function(req, res) {
 //     console.error(err);
 // });
 // };
+});
+
+router.get('*', function(req, res){
+  // res.send('what???', 404);
+  res.render("./user/freg.ejs")
 });
 
 

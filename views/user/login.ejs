@@ -13,9 +13,9 @@
     <div id="container">
        
        <% if (message.length > 0) { %>
-          <div class="error-alert">
-            <%= message %>
-          </div>
+        <div class='error-alert'>
+          <li><%= message %></li>
+        </div>
         <% } %>
 
         <form action="/user/login" method="post">
@@ -28,12 +28,13 @@
             <input type="password" name="password"> <!-- change type to password later -->
           </div>
           <div>
-            <button type="submit">Login</button>
+            <button type="submit" class="login-home">Login</button>
           </div>
         </form>
-
-          <a href="./signup">Signup</a>
+        <div class="bottom-buttons">
           <a href="/">Home</a>
+          <a href="./signup">Signup</a>
+        </div>
 
 
       </div>

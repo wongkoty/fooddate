@@ -5,8 +5,16 @@
 	max-width: 750px;
 }
 .intro-class {
-	padding: 2em 3em;
+	padding: 10rem 3rem 1rem 3rem;
 	display: inline-block;
+}
+#dasix {
+	animation: fadeinhands 5s;
+	-webkit-animation: fadeinhands 5s;
+}
+.dasixclass {
+	position: absolute;
+	right: 43%;
 }
 h1{
 	font-size: 7em;
@@ -40,6 +48,17 @@ a {
     0% { opacity: 0; }
     100%  { opacity: 1; }
 }
+@keyframes fadeinhands {
+    0% { opacity: 0; }
+    35% { opacity: 0; }
+    100%   { opacity: 1; }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeinhands {
+    0% { opacity: 0; }
+    35% { opacity: 0; }
+    100%  { opacity: 1; }
+}
 
 footer {
 	text-align: center;
@@ -68,5 +87,12 @@ footer a{
 	}
 	a {
 		font-size: 1em;
+	}
+	.intro-class {
+	padding: 5rem 3rem 1rem 3rem;
+	display: inline-block;
+}
+	#dasix {
+		height: 85px;
 	}
 }

@@ -18,13 +18,14 @@
 		<li><a href="/user/logout">Logout</a></li>	</ul>
 </nav>
 
-		<% if (message.length > 0) { %>
+	<div id="container">
+
+	<% if (message.length > 0) { %>
       <div class="error-alert">
         <%= message %>
       </div>
     <% } %>
 
-	<div id="container">
 		<div id="search-form">
 			<form action="/user/yelp/index" method="post">
 				<input class="typeform" type="text" name="term" placeholder="Chinese, italian, perhaps Halal Guys?"></br>
@@ -41,8 +42,8 @@
 				  <option value="20">20 Miles</option>
 				  <option value="25">25 Miles</option>
 				</select></br>
-				<button class="button">Search</button>
-				<input type="reset">
+				<button class="bottom-buttons">Search</button>
+				<button class ="bottom-buttons" type="reset">Reset</button>
 			</form>
 		</div>
 	</div>

@@ -6,7 +6,19 @@
 	<title></title>
 </head>
 <body>
-<h1>Invite a Homie</h1>
+<header>
+	<h1>Invite a Homie</h1>
+</header>
+<nav class="main-nav">
+	<ul>
+		<li><a href="/user">Profile</a></br></li>
+		<li><a href="/user/yelp/">Make a search</a></li>
+		<li><a href="/user/add">Add Friend</a></li>
+		<li><a href="/user/edit">Edit Profile</a></li>
+		<li><a href="/user/logout">Logout</a></li>
+	</ul>
+</nav>
+
 	<div id="container">
 		<a href="<%= data.url %>"><%= data.name%></a> </br>
 		<b>Phone Number: </b> <%= data.display_phone %> </br>
@@ -29,8 +41,8 @@
 			<img src="/images/cal.gif" onclick="javascript:NewCssCal ('demo7','MMMddyyyy','dropdown',true,'24','','future')" style="cursor:pointer"/></br>
 			<input type="text" class="typeform" name="friends" placeholder="Friend's Name"></br>
 			<input type="text" class="typeform" name="phone_number" placeholder="Phone Number"></br>
-			<input type="reset"></br>
-			<button type="submit" class="button">Send request</button>
+			<button type="submit" class="bottom-buttons">Send request</button>
+			<button class ="bottom-buttons" type="reset">Reset</button>
 		</form></br>
 		<a href="javascript:history.back()">Go back</a>
 	</div>

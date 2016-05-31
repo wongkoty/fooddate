@@ -6,15 +6,27 @@
 </head>
 <body>
 <header>
-	<h1>Where would you like to eat?</h1>
+	<h1>Where we finna eat?</h1>
 </header>
+<nav class="main-nav">
+	<ul>
+		<li><a href="/user">Profile</a></br></li>
+		<li><a href="/user/yelp/">Make a search</a></li>
+		<li><a href="/user/add">Add Friend</a></li>
+		<li><a href="/user/edit">Edit Profile</a></li>
+		<li><a href="/user/logout">Logout</a></li>
+	</ul>
+</nav>
 
 	<div id="container">
 	
 			<div id="search-form">
 		<% for (i = 0; i < data.businesses.length; i++) { %>
-			<a href="/user/yelp/<%= data.businesses[i].id %>"><%= data.businesses[i].name%></a> </br>
-			<img src="<%= data.businesses[i].rating_img_url_small %>"> </br>
+			<div class="index-restaurants">
+				<a href="/user/yelp/<%= data.businesses[i].id %>"><%= data.businesses[i].name%></a> </br>
+				<%= data.businesses[i].snippet_text%></a> </br>
+				<img src="<%= data.businesses[i].rating_img_url %>"> </br>
+			</div>
 		<% } %>
 		<a href="javascript:history.back()">Go back</a>
 			</div>

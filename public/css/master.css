@@ -6,6 +6,16 @@ body {
 	background-color: cornsilk;
 	font-family: "drakeFont";
 }
+button {
+	font-family: "drakeFont";
+	/*height: 2em;*/
+	width: 5em;
+	font-size: 1.3em;
+	border: 1px black;
+}
+button.login-home {
+	margin-top: 1.3em;
+}
 h1 {
 	font-size: 4em;
 }
@@ -13,8 +23,25 @@ a {
 	font-size: 1.3em;
 	text-decoration: none;
 }
+div.bottom-buttons {
+	margin-top: 2em;
+}
+div.index-restaurants {
+	margin: 0 auto;
+	max-width: 45%;
+	padding-bottom: 2rem;
+}
+.bottom-buttons {
+	margin-top: 2em;
+}
+div.bottom-buttons a{
+	margin: 0 2em;
+}
 a:hover {
 	text-decoration:line-through
+}
+li.errors {
+	display: inline-block;
 }
 header {
 	margin-top: 2em;
@@ -33,6 +60,12 @@ nav ul li {
 	float: left;
 	list-style: none;
 }
+.error-alert {
+	background-color: darkorange;
+	display: inline-block;
+	font-size: 2em;
+	margin-bottom: 1.2em;
+}
 #container {
 	text-align: center;
 	padding-top: 3em;
@@ -49,4 +82,14 @@ input.typeform, select{
 	margin: 0 auto;
 	width: 350px;
   height: 350px;
+}
+#freg {
+	text-align: center;
+	padding-bottom: 3rem;
+}
+
+/*IMPORTED FONTS*/
+@font-face {
+  font-family: drakeFont;
+  src: url("/fonts/Late-Regular.otf");
 }

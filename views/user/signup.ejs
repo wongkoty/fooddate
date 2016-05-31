@@ -13,12 +13,12 @@
 	<h1>Sign Up </h1></br>
 	 <form action="/user/signup" method="post">
 			 <% if (message.length > 0) { %>
-			The following errors occured:
+			The following errors occured: </br>
+			<div class='error-alert'>
 			<%	for(i = 0; i < message.length; i++) { %>
-		      <div class="error-alert">
-		        <li><%= message[i].msg %></li>
-		      </div>
+		        <li class="errors"><%= message[i].msg %></li></br>
 		 <% } %>
+		 </div>
 		<% } %>
 	 		<div>
 	      <label>First Name</label>
@@ -46,9 +46,9 @@
 		  </div>
 	    <button type="submit">Signup</button>
 	  </form>
-
+ 		<a href="./">home</a>
 	  <a href="./login">Login</a>
-	  <a href="./">home</a>
+	
 </div>
 </body>
 </html>
