@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/master.css">
 	<title></title>
 </head>
 <body>
-	<h1>Where would you like to eat?</h1>
-	<% for (i = 0; i < data.businesses.length; i++) { %>
-		<a href="/user/yelp/<%= data.businesses[i].id %>"><%= data.businesses[i].name%></a> </br>
-		<img src="<%= data.businesses[i].rating_img_url_small %>"> </br>
-	<% } %>
+	<div id="container">
+		<h1>Where would you like to eat?</h1>
+			<div id="search-form">
+		<% for (i = 0; i < data.businesses.length; i++) { %>
+			<a href="/user/yelp/<%= data.businesses[i].id %>"><%= data.businesses[i].name%></a> </br>
+			<img src="<%= data.businesses[i].rating_img_url_small %>"> </br>
+		<% } %>
+		<a href="javascript:history.back()">Go back</a>
+			</div>
+	</div>	
 
 
-	<a href="javascript:history.back()">Go back</a>
 </body>
 </html>

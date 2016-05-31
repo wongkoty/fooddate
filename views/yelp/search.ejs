@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<title></title>
+	<link rel="stylesheet" type="text/css" href="/css/master.css">
+	<title>Search</title>
 </head>
 <body>
 <header>
 </header>
 <!-- need to make important things for yelp query -->
-<h1>Search for some restaurants</h1>
 
 
-	<div id="searchbar">
-		<form action="/user/yelp/index" method="post">
-			<input type="text" name="term" placeholder="Chinese, italian, perhaps Halal Guys?"></br>
-			<!-- <input type="text" name="category_filter" placeholder="Category"></br> -->
-			<input type="text" name="location" placeholder="Where do you wanna grub?"></br>
-			<input type="reset"></br>
-			<button class="button">Search</button>
-		</form>
+
+	<div id="container">
+		<h1>Search for some restaurants</h1>
+		<div id="search-form">
+			<form action="/user/yelp/index" method="post">
+				<input class="typeform" type="text" name="term" placeholder="Chinese, italian, perhaps Halal Guys?"></br>
+				<input class="typeform" type="text" name="location" placeholder="Where do you wanna grub?"></br>
+				<select name="sort">
+				  <option value="0">Best Match</option>
+				  <option value="1">Distance</option>
+				  <option value="2">HYPE!!</option>
+				</select></br>
+				<select name="radius_filter">
+				  <option value="5">5 Miles</option>
+				  <option value="10">10 Miles</option>
+				  <option value="15">15 Miles</option>
+				  <option value="20">20 Miles</option>
+				  <option value="25">25 Miles</option>
+				</select></br>
+				<input type="reset"></br>
+				<button class="button">Search</button>
+			</form>
+		</div>
+		<a href="/user">Profile</a></br>
+		<a href="/user/logout">Logout</a>
 	</div>
 
-<a href="/user">Profile</a>
 
 </body>
 </html>

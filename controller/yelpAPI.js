@@ -72,10 +72,12 @@ router.get("/yelp/:id", function(req,res){
 router.post("/yelp/index", function(req, res) {
   console.log("yelp post route works");
   console.log(req.body);
+  var toMeters = req.body.radius_filter*1609.34;
+  console.log("this is tometers " + toMeters)
   // req.session.data = req.body; // trying to set session to the body to refer to in my index
   // var test = JSON.stringify(req.body);
   // res.cookie("term", req.body.term);
-  yelp.search({ term: req.body.term, limit: 10, location: req.body.location })
+  yelp.search({ term: req.body.term, limit: 10, radius_filter: toMeters, location: req.body.location })
   .then(function (data) {
     console.log("yelp search rendered");
     // console.log(data);

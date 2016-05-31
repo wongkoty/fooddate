@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/master.css">
 	<script type="text/javascript" src="/js/datetimepicker_css.js"></script>
 	<title></title>
 </head>
 <body>
 
-
-	<a href="<%= data.url %>"><%= data.name%></a> </br>
-	<b>Phone Number: </b> <%= data.display_phone %> </br>
-	<b>Address: </b> <% for (i = 0; i < data.location.display_address.length; i++) { %>
-		<%= data.location.display_address[i] + "," %>
-	<% } %> </br>
-	<b>Cusine: </b> <% for (i = 0; i < data.categories.length; i++) { %>
-		<%= data.categories[i][0] + ", " %>
-	<% } %> </br>
-	<img src="<%= data.rating_img_url %>">
-		<form action="/user/twilio" method="POST">
-		<!-- <input type="text" name="first_name" placeholder="First Name"></br> -->
-		<!-- <input type="text" name="last_name" placeholder="Last Name"></br> -->
-		<!-- <input type="text" name="email" placeholder="E-mail"></br> -->
-		<input type="hidden" name="restaurant_name" value="<%= data.name %>">
-		<input type="hidden" name="address" value="<%= data.location.address %>">
-		<input type="hidden" name="city" value="<%= data.location.city %>">
-		<input type="text" name="date" id="demo7" maxlength="25" size-"25" placeholder="Pick a date">
-		<img src="/images/cal.gif" onclick="javascript:NewCssCal ('demo7','MMMddyyyy','dropdown',true,'24','','future')" style="cursor:pointer"/></br>
-		<input type="text" name="friends" placeholder="Friend's Name"></br>
-		<input type="text" name="phone_number" placeholder="Phone Number"></br>
-		<input type="reset"></br>
-		<button type="submit" class="button">Send request</button>
-	</form></br>
-
-	<a href="javascript:history.back()">Go back</a>
+	<div id="container">
+		<a href="<%= data.url %>"><%= data.name%></a> </br>
+		<b>Phone Number: </b> <%= data.display_phone %> </br>
+		<b>Address: </b> <% for (i = 0; i < data.location.display_address.length; i++) { %>
+			<%= data.location.display_address[i] + "," %>
+		<% } %> </br>
+		<b>Cusine: </b> <% for (i = 0; i < data.categories.length; i++) { %>
+			<%= data.categories[i][0] + ", " %>
+		<% } %> </br>
+		<img src="<%= data.rating_img_url %>">
+			<form action="/user/twilio" method="POST">
+			<!-- <input type="text" name="first_name" placeholder="First Name"></br> -->
+			<!-- <input type="text" name="last_name" placeholder="Last Name"></br> -->
+			<!-- <input type="text" name="email" placeholder="E-mail"></br> -->
+			<input type="hidden" class="typeform" name="restaurant_name" value="<%= data.name %>">
+			<input type="hidden" class="typeform" name="address" value="<%= data.location.address %>">
+			<input type="hidden" class="typeform" name="city" value="<%= data.location.city %>">
+			<input type="text" class="typeform" name="date" id="demo7" maxlength="25" size-"25" placeholder="Pick a date">
+			<img src="/images/cal.gif" onclick="javascript:NewCssCal ('demo7','MMMddyyyy','dropdown',true,'24','','future')" style="cursor:pointer"/></br>
+			<input type="text" class="typeform" name="friends" placeholder="Friend's Name"></br>
+			<input type="text" class="typeform" name="phone_number" placeholder="Phone Number"></br>
+			<input type="reset"></br>
+			<button type="submit" class="button">Send request</button>
+		</form></br>
+		<a href="javascript:history.back()">Go back</a>
+	</div>
+	
 </body>
 </html>
 

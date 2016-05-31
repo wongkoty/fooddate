@@ -17,3 +17,11 @@ a {
 	text-align: center;
 	margin-top: 5em;
 }
+input.typeform, select{
+	font-size: 1.1em;
+	width: 20em;
+	/*margin-top: 1em;*/
+}
+#search-form {
+	margin-top: 2em;
+}
