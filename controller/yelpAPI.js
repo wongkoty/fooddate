@@ -67,7 +67,7 @@ router.get("/yelp/:id", function(req,res){
     console.error(err);
     if (err.statusCode == 400 ){
       console.log("error in input");
-      req.flash("ErrorMessage", "Doesn't exist")
+      req.flash("ErrorMessage", "Invalid business")
       res.render("./yelp/search.ejs", { message: req.flash("ErrorMessage")})
     }
   })
