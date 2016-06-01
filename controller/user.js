@@ -20,19 +20,19 @@ var yelpAPIController = require("./yelpAPI.js");
 router.all("/yelp/*", isLoggedIn, yelpAPIController); //protects yelp route
 // router.get("/yelp/index", isLoggedIn, yelpAPIController);
 
-// =====================================
-// Facebook Login
-// =====================================
-router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }))
+// // =====================================
+// // Facebook Login
+// // =====================================
+// router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }))
 
-// =====================================
-// Facebook Callback
-// =====================================
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {
-      successRedirect : '/',
-      failureRedirect : '/user/login'
-  }));
+// // =====================================
+// // Facebook Callback
+// // =====================================
+// router.get('/auth/facebook/callback',
+//   passport.authenticate('facebook', {
+//       successRedirect : '/',
+//       failureRedirect : '/user/login'
+//   }));
 
 // =========================
 // Login page
@@ -66,15 +66,15 @@ router.post('/login', passport.authenticate('local-login', {
   failureFlash : true // allow flash messages
 }));
 
- // send to facebook to do the authentication
-router.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+//  // send to facebook to do the authentication
+// router.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
 
-// handle the callback after facebook has authorized the user
-router.get('/connect/facebook/callback',
-  passport.authorize('facebook', {
-      successRedirect : '/',
-      failureRedirect : '/user/login'
-  }));
+// // handle the callback after facebook has authorized the user
+// router.get('/connect/facebook/callback',
+//   passport.authorize('facebook', {
+//       successRedirect : '/',
+//       failureRedirect : '/user/login'
+//   }));
 
 // =========================
 // Signup page
