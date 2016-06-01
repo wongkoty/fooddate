@@ -33,12 +33,13 @@
 		    <input type="text" class="typeform" name="phone_number" value="<%= data.phone_number %>">
 		  </div>
 		  <input type="hidden" name="_method" value="put">
-	    <button type="submit">Update</button>
-	      <form action="/user/profile/<%= data.id %>" method="POST">
-  				<input type="hidden" name="_method" value="DELETE"/>
-  				<button class="bottom-buttons">Delete brah?</button>
-				</form>
+	    <button type="submit" class="bottom-buttons">Update</button>
 	  </form>
+
+	  <form action="/user/profile/<%= data.id %>" method="POST">
+  		<input type="hidden" name="_method" value="DELETE"/>
+  		<button class="bottom-buttons" id="delete">Delete brah?</button>
+		</form>
 
 
 	</div>

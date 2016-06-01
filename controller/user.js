@@ -20,7 +20,19 @@ var yelpAPIController = require("./yelpAPI.js");
 router.all("/yelp/*", isLoggedIn, yelpAPIController); //protects yelp route
 // router.get("/yelp/index", isLoggedIn, yelpAPIController);
 
+// =====================================
+// Facebook Login
+// =====================================
+router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }))
 
+// =====================================
+// Facebook Callback
+// =====================================
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+      successRedirect : '/',
+      failureRedirect : '/user/login'
+  }));
 
 // =========================
 // Login page
@@ -28,7 +40,7 @@ router.all("/yelp/*", isLoggedIn, yelpAPIController); //protects yelp route
 router.get("/login", function(req, res) {
   console.log(req.user)
   if (req.user == null) {
-    res.render("./user/login.ejs", { message: req.flash("loginMessage")})
+    res.render("./user/login.ejs", { message: req.flash("loginMessage")});
   } else {
     res.redirect("/user");
   }
@@ -45,21 +57,31 @@ router.get("/login", function(req, res) {
 // });
 
 
-// // =========================
-// // Post login
-// // =========================
+// =========================
+// Post login
+// =========================
 router.post('/login', passport.authenticate('local-login', {
   successRedirect: '/user/', // redirect to the secure profile section
   failureRedirect: '/user/login', // redirect back to the signup page if there is an error
   failureFlash : true // allow flash messages
 }));
 
+ // send to facebook to do the authentication
+router.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+
+// handle the callback after facebook has authorized the user
+router.get('/connect/facebook/callback',
+  passport.authorize('facebook', {
+      successRedirect : '/',
+      failureRedirect : '/user/login'
+  }));
+
 // =========================
 // Signup page
 // =========================
 router.get("/signup", function(req, res) {
   console.log("get signup page route");
-  res.render("./user/signup.ejs", {message: req.flash("signupMessage")} )
+  res.render("./user/signup.ejs", { message: req.flash("signupMessage")});
 });
 
 // =========================
@@ -71,7 +93,7 @@ router.get("/signup", function(req, res) {
 //     res.redirect("/user");
 // });
 router.post("/signup", passport.authenticate("local-signup", {
-  successRedirect: "/user/profile", // success brings you to profile page
+  successRedirect: "/user", // success brings you to profile page
   failureRedirect: "/user/signup", // redirects back to signup page upon failure
   failureFlash: true //allows flash message for failure
 }));
@@ -82,7 +104,7 @@ router.post("/signup", passport.authenticate("local-signup", {
 router.get("/logout", function(req, res) {
   console.log("logout reached");
   req.logout();
-  req.flash("success_msg", "You are logged out");
+  // req.flash("success_msg", "You are logged out");
   res.redirect("/");
 });
 

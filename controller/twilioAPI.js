@@ -26,17 +26,18 @@ router.post("/twilio", function(req, res) {
   var sendThisNumber = "+1" + test.phone_number;
   console.log(sendThis);
   console.log(sendThisNumber);
+  console.log(typeof sendThisNumber);
   // console.log(req.body.address.display_address);
   client.sendMessage({
     to: sendThisNumber,
     from: process.env.TWILIO_NUMBER,
     body: sendThis
-  }), function(err, data){
-    if(err){
+  }, function(err, data) {
+    if(err) {
       console.log(err);
     }
     console.log(data);
-  }
+  })
   res.redirect("/user");
 });
 
