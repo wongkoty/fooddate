@@ -27,17 +27,31 @@ router.post("/twilio", function(req, res) {
   console.log(sendThis);
   console.log(sendThisNumber);
   console.log(typeof sendThisNumber);
-  // console.log(req.body.address.display_address);
-  client.sendMessage({
+  if (sendThisNumber == "+19086981476") {
+    console.log("wow its my number");
+    client.sendMessage({
     to: sendThisNumber,
     from: process.env.TWILIO_NUMBER,
-    body: sendThis
-  }, function(err, data) {
+    body: "Let's show Freg what a pizza pie looks like!"
+    }, function(err, data) {
     if(err) {
       console.log(err);
     }
     console.log(data);
-  })
+  });
+  } else {
+      client.sendMessage({
+      to: sendThisNumber,
+      from: process.env.TWILIO_NUMBER,
+      body: sendThis
+    }, function(err, data) {
+    if(err) {
+      console.log(err);
+    }
+    console.log(data);
+  });
+  }
+  // console.log(req.body.address.display_address);
   res.redirect("/user");
 });
 
