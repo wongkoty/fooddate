@@ -15,6 +15,8 @@ Food date is a CRUD app made using MVC architecture that allows users to search 
 - HTML/CSS
 - Yelp API
 - Twilio API
+- Facebook API (*implementing*)
+- Google maps
 
 ## Features
 - Users can set parameters and search through Yelp API
@@ -28,3 +30,8 @@ Food date is a CRUD app made using MVC architecture that allows users to search 
 - Add more validation checkers
 - Add CRM aspect for restaurateurs
 - Add more styling
+- Finish Facebook login credentials
+- Custom Messages
+- Group Messaging
+- Messaging platform
+- Analytics
