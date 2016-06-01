@@ -1,5 +1,5 @@
 {
-  "name": "food_date2",
+  "name": "food_date",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -25,6 +25,7 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "request": "^2.72.0",
+    "serve-favicon": "^2.3.0",
     "twilio": "^2.9.1",
     "yelp": "^1.0.1"
   }

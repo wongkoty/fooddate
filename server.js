@@ -3,6 +3,7 @@
 // =========================
 var express = require('express');
 var app = express();
+var favicon = require("serve-favicon");
 var expressValidator = require("express-validator");
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -55,6 +56,7 @@ app.get("/", function(req, res) {
     res.redirect("/user");
   }
 })
+
 
 
 // =========================

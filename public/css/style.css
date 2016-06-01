@@ -1,7 +1,7 @@
 #intro-page-container {
 	text-align: center;
 	margin: 0 auto;
-	margin-top: 8em;
+	margin-top: 4em;
 	max-width: 750px;
 }
 .intro-class {
@@ -9,8 +9,8 @@
 	display: inline-block;
 }
 #dasix {
-	animation: fadeinhands 5s;
-	-webkit-animation: fadeinhands 5s;
+	animation: fadeinhands 4s;
+	-webkit-animation: fadeinhands 4s;
 }
 .dasixclass {
 	position: absolute;
@@ -50,13 +50,13 @@ a {
 }
 @keyframes fadeinhands {
     0% { opacity: 0; }
-    35% { opacity: 0; }
+    20% { opacity: 0; }
     100%   { opacity: 1; }
 }
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadeinhands {
     0% { opacity: 0; }
-    35% { opacity: 0; }
+    20% { opacity: 0; }
     100%  { opacity: 1; }
 }
 
@@ -80,7 +80,7 @@ footer a{
 @media (max-width: 800px) {
 	#intro-page-container {
 		max-width: 400px;
-		margin-top: 8em;
+		margin-top: 4em;
 	}
 	h1 {
 		font-size: 3em;
@@ -88,6 +88,11 @@ footer a{
 	a {
 		font-size: 1em;
 	}
+	footer, footer a {
+		font-size: 10px;
+		color: black;
+	}
+
 	.intro-class {
 	padding: 5rem 3rem 1rem 3rem;
 	display: inline-block;
