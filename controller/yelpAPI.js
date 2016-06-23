@@ -8,7 +8,7 @@ var Yelp = require('yelp');
 var User = require("../models/user.js");
 var doesThisPrint = 123;
 
-
+// Yelp keys for API access
 var yelp = new Yelp({
   consumer_key: process.env.consumer_key,
   consumer_secret: process.env.consumer_secret,
@@ -20,21 +20,21 @@ var yelp = new Yelp({
 // Render search page
 // =========================
 router.get("/yelp", function(req, res) {
-  console.log('test route APIcontroller works');
-  res.render("./yelp/search.ejs", { message: req.flash("loginMessage")})
+  // console.log('test route APIcontroller works');
+  res.render("./yelp/search.ejs", { message: req.flash("loginMessage")}) //flash message
 });
 
 // =========================
 // Render index page
 // =========================
 router.get("/yelp/index", function(req, res) {
-  console.log("index route works");
-  console.log(req.body);
-  console.log(req.user);
-  console.log("=========");
-  console.log(req.session);
-  console.log("=========");
-  console.log(req.session.data);
+  // console.log("index route works");
+  // console.log(req.body);
+  // console.log(req.user);
+  // console.log("=========");
+  // console.log(req.session);
+  // console.log("=========");
+  // console.log(req.session.data);
   var data = req.session;
   // var sess = req.session;
   // console.log(sess);
@@ -48,7 +48,7 @@ router.get("/yelp/index", function(req, res) {
 // Generates Show page
 // ==============================
 router.get("/yelp/:id", function(req,res){
-  console.log("show page works")
+  // console.log("show page works")
 
 //   yelp.search({ id: req.params.id }).then(function (data) {
 //     // console.log(data);
@@ -57,17 +57,17 @@ router.get("/yelp/:id", function(req,res){
 //   }).catch(function (err) {
 //     console.error(err);
 // });
-  yelp.business(req.params.id).then(function(data){
-    console.log(data);
-    console.log(data.location.coordinate.latitude);
-    console.log(typeof data.location.coordinate.latitude);
+  yelp.business(req.params.id).then(function(data){ //finds business by ID
+    // console.log(data);
+    // console.log(data.location.coordinate.latitude);
+    // console.log(typeof data.location.coordinate.latitude);
     res.render("./yelp/show.ejs", {data});
   })
   .catch(function (err) {
-    console.error(err);
+    // console.error(err);
     if (err.statusCode == 400 ){
-      console.log("error in input");
-      req.flash("ErrorMessage", "Invalid business")
+      // console.log("error in input");
+      req.flash("ErrorMessage", "Invalid business")  // If wrong business, flash message error
       res.render("./yelp/search.ejs", { message: req.flash("ErrorMessage")})
     }
   })
@@ -78,26 +78,26 @@ router.get("/yelp/:id", function(req,res){
 // Posts query parameters
 // ==============================
 router.post("/yelp/index", function(req, res) {
-  console.log("yelp post route works");
-  console.log(req.body);
-  var toMeters = req.body.radius_filter*1609.34;
-  console.log("this is tometers " + toMeters)
+  // console.log("yelp post route works");
+  // console.log(req.body);
+  var toMeters = req.body.radius_filter*1609.34;  // converts mile to meters for yelp search
+  // console.log("this is tometers " + toMeters)
   // req.session.data = req.body; // trying to set session to the body to refer to in my index
   // var test = JSON.stringify(req.body);
   // res.cookie("term", req.body.term);
-  yelp.search({ term: req.body.term, limit: 10, sort: req.body.sort, category_filter: "food", radius_filter: toMeters, location: req.body.location })
+  yelp.search({ term: req.body.term, limit: 10, sort: req.body.sort, radius_filter: toMeters, location: req.body.location })
   .then(function (data) {
-    console.log("yelp search rendered");
+    // console.log("yelp search rendered");
     // console.log(data);
     req.session.data = data; // trying to set session to the body to refer to in my index
     // res.render("./yelp/index.ejs", {data}); //SUCCESS FINALLY TO PUT IN GET ROUTE
     res.redirect("/user/yelp/index");
   })
   .catch(function (err) {
-    console.error(err);
+    // console.error(err);
     if (err.statusCode == 400 ){
-      console.log("error in input");
-      req.flash("searchErrorMessage", "Requires Location")
+      // console.log("error in input");
+      req.flash("searchErrorMessage", "Requires Location") //sets flash message
       res.render("./yelp/search.ejs", { message: req.flash("searchErrorMessage")})
     }
   });

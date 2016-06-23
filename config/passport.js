@@ -8,6 +8,7 @@ var configAuth = require('./auth');
 var User = require("../models/user.js");
 var Friends = require("../models/friends.js");
 
+// exports passport functions
 module.exports = function(passport) {
 
   //serializes user for the session
@@ -39,6 +40,9 @@ module.exports = function(passport) {
     // console.log("this is the req.body.password2 " + req.body.password2);
     // console.log("====================================");
 
+    // =======================================
+    // Validation checks
+    // =======================================
     req.checkBody("first_name", "First name is required").notEmpty();
     req.checkBody("last_name", "Last name is required").notEmpty();
     req.checkBody("phone_number", "Invalid phone number").notEmpty();
@@ -49,6 +53,9 @@ module.exports = function(passport) {
     req.checkBody("password", "Password is too short").len(6);
     req.checkBody("password2", "Passwords don't match").equals(req.body.password);
 
+    //  ==================================
+    //  Error messages
+    //  ==================================
     var errors = req.validationErrors();
 
     if(errors){  //checks for errors
@@ -63,10 +70,10 @@ module.exports = function(passport) {
     }
 
     process.nextTick(function() {
-
+      // Finds user by e-mail
       User.findOne({ "local.email": email }, function(err, user) {
         // console.log(user);
-        if (err) {
+        if (err) {  
           console.log("there is an error!");
           return done(err); //checks for an error in email
         }
@@ -79,10 +86,10 @@ module.exports = function(passport) {
           var newFriends = new Friends();
 
 
-          console.log(newUser);
-          console.log(email);
+          // console.log(newUser);
+          // console.log(email);
           // console.log(phone_number);
-          console.log(req.body.first_name);
+          // console.log(req.body.first_name);
           newUser.first_name = req.body.first_name;
           newUser.last_name = req.body.last_name;
           newUser.phone_number = req.body.phone_number;
@@ -94,12 +101,12 @@ module.exports = function(passport) {
           // newUser.phone_number = phone_number;
           newUser.local.email = email;
           newFriends.email = email;
-          console.log(newUser);
+          // console.log(newUser);
           // console.log(newUser.generateHash(password));
           newUser.local.password = newUser.generateHash(password);
-          console.log(newUser.local.password);
+          // console.log(newUser.local.password);
           
-          newFriends.save(function(err) {
+          newFriends.save(function(err) { //saves to friend model
             if (err) {
               console.log(err);
             } else {
@@ -107,7 +114,7 @@ module.exports = function(passport) {
             }
           });
 
-          newUser.save(function(err) {
+          newUser.save(function(err) {  //saves to user model
             if (err) {
               throw err;
             } else {
@@ -130,6 +137,7 @@ module.exports = function(passport) {
   function(req, email, password, done) {
     process.nextTick(function() {
 
+      // Find user by e-mail
       User.findOne({ "local.email": email}, function(err, user) {
         console.log(user);
         if (err) {
@@ -144,6 +152,7 @@ module.exports = function(passport) {
           console.log("wrong password");
           return done(null, false, req.flash("loginMessage", "Invalid email or password"));
         }
+        // if usr is there, return the user
         return done(null, user);
       });
     });
