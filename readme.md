@@ -1,7 +1,5 @@
 # Food Date
 
-A readme.md file with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
-
 [https://fooddate.herokuapp.com/](https://fooddate.herokuapp.com/)
 
 ## Description
